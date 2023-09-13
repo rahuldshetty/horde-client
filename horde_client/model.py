@@ -15,6 +15,12 @@ class Model(BaseModel):
     queued: float
     type: ModelType
 
+    def __str__(self) -> str:
+        return "Model({name}, perf={perf})".format(
+            name = self.name,
+            perf = self.performance
+        )
+
 class TextGenParams(BaseModel):
     frmtadsnsp: bool = False
     frmtrmblln: bool = False
@@ -69,4 +75,10 @@ class JobResponse(BaseModel):
     restarted: int
     wait_time: int
     waiting: int
+
+    def __str__(self) -> str:
+        return "Output(done={done},responses=[{responses}])".format(
+            done = str(self.done),
+            responses = str(len(self.generations))
+        )
 

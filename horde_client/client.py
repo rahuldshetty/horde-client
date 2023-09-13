@@ -11,6 +11,10 @@ class HordeClient:
             api_token=config.ANON_KEY
         ):
         '''
+        Instantiate HordeClient SDK.
+
+        Parameters:
+        -----------
         base_url (str): Kobold Horde API URL (Default: https://horde.koboldai.net/api/)
         api_token (str): Kobold Horde API Key (Default: 0000000000)
         '''
@@ -40,16 +44,12 @@ class HordeClient:
 
         # Additional Header tokens added here
         headers = self.__headers()
-        
-        print(url, headers, query_params)
 
         response = requests.get(
             url,
             params = query_params,
             headers=headers
         )
-
-        print(response, response.status_code, response.text)
 
         return response.json()
 
@@ -88,9 +88,9 @@ class HordeClient:
             }
         )
         model_list = []
-        for model in results:
+        for model_obj in results:
             model_list.append(
-                model.Model(**model)
+                model.Model(**model_obj)
             )
         return model_list
     
