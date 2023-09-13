@@ -23,6 +23,8 @@ class HordeClient:
         self.__models = []
     
     def __headers(self):
+        '''
+        '''
         return {
             'Apikey': self.__api_token,
             'User-Agent': random.choice(config.user_agents)
@@ -81,6 +83,8 @@ class HordeClient:
 
 
     def list_models(self, type:model.ModelType) -> List[model.Model]:
+        '''
+        '''
         results = self.get(
            config.ENDPOINT_LIST['V2__MODEL_LIST'], 
             query_params={
@@ -95,12 +99,18 @@ class HordeClient:
         return model_list
     
     def clear_model(self):
+        '''
+        '''
         self.__models = []
 
     def set_model(self, model:str):
+        '''
+        '''
         self.__models.append(model)
     
     def check_job_status(self, job:model.Job) -> model.JobResponse:
+        '''
+        '''
         status = self.get(
             config.ENDPOINT_LIST['V2__ASYNC_TEXT_STATUS'],
             path_params={
@@ -110,6 +120,8 @@ class HordeClient:
         return model.JobResponse(**status)
 
     def text_gen(self, prompt:str, params:model.TextGenParams = model.TextGenParams()):
+        '''
+        '''
         request_data = model.TextGenRequest(
             models = self.__models,
             params = params,
