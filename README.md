@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/rahuldshetty/horde-client">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="100" height="90">
   </a>
 
   <h3 align="center">Horde Client
@@ -40,11 +40,12 @@ This project provides Python Client to interact with [KoboldAI Horde](https://ho
 ## Roadmap
 
 - [X] Text Generation Support
-- [] Image Generation Support
-- [] Async Client
-- [] readthedocs integration
-- [] Tests
-- Missing Anything? Raise a feature [reqest](https://github.com/rahuldshetty/horde-client/issues) 
+- [ ] Image Generation Support
+- [ ] Asynchronous Client
+- [ ] Readthedocs integration
+- [ ] Tests
+
+Missing Something? Raise a [request](https://github.com/rahuldshetty/horde-client/issues) 
 
 <!-- CONTRIBUTING -->
 ## Contributing
