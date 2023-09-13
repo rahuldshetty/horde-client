@@ -51,7 +51,7 @@ This project provides Python Client to interact with [KoboldAI Horde](https://ho
 <!-- Installation -->
 ## Quickstart
 
-Install Horde Clint with pip: 
+Install Horde Client with pip: 
 
 `pip install horde-client`
 
