@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/rahuldshetty/horde-client">
-    <img src="images/logo.png" alt="Logo" width="100" height="90">
+    <img src="https://raw.githubusercontent.com/rahuldshetty/horde-client/master/images/logo.png" alt="Logo" width="100" height="90">
   </a>
 
   <h3 align="center">Horde Client
