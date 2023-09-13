@@ -21,12 +21,12 @@
 
   <p align="center">
     Easy-to-use Python Interface for KoboldAI Horde.
-    <br />
+    <!-- <br />
     <a href="#"><strong>Explore the docs »</strong></a>
+    <br /> -->
     <br />
-    <br />
-    <a href="#">View Demo</a>
-    ·
+    <!-- <a href="#">View Demo</a> -->
+    <!-- · -->
     <a href="https://github.com/rahuldshetty/horde-client/issues">Report Bug</a>
     ·
     <a href="https://github.com/rahuldshetty/horde-client/issues">Request Feature</a>
@@ -51,8 +51,11 @@ This project provides Python Client to interact with [KoboldAI Horde](https://ho
 <!-- Installation -->
 ## Quickstart
 
-Install Horde Clint with pip: `pip install horde-client`
+Install Horde Clint with pip: 
 
+`pip install horde-client`
+
+Sample Code:
 
 ```python
 from horde_client import HordeClient, TextGenParams
