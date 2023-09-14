@@ -34,7 +34,7 @@
 </div>
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## About
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
@@ -91,6 +91,7 @@ print(text_gen_ouput.generations[0].text)
 ## Roadmap
 
 - [X] Text Generation Support
+- [ ] LangChain/LlaMaIndex Integration
 - [ ] Image Generation Support
 - [ ] Asynchronous Client
 - [ ] Readthedocs integration
