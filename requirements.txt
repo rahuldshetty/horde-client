@@ -1,2 +1,3 @@
 requests==2.27.1
 pydantic==2.3.0
+asyncio-requests==2.7.3

@@ -16,7 +16,8 @@ setup(
     url='https://github.com/rahuldshetty/horde-client.git',
     install_requires=[
         'requests==2.27.1',
-        'pydantic==2.3.0'
+        'pydantic==2.3.0',
+        'asyncio-requests==2.7.3'
     ],
     packages=['horde_client'],
     long_description=long_description,
