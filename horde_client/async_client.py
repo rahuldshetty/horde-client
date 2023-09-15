@@ -1,4 +1,4 @@
-import random, time
+import random, time, json
 from urllib.parse import  urljoin
 from typing import List
 
@@ -66,7 +66,12 @@ class AsyncHordeClient:
             }
         )
 
-        return response
+        # TODO: Handle Exceptions
+
+        result = response['api_response']
+
+        if result['status_code'] in [200, 201]:
+            return result['json']
 
     async def post(self, endpoint, path_params:dict = None, query_params:dict = None, json_payload:dict = {}):
         '''
@@ -98,7 +103,11 @@ class AsyncHordeClient:
             }
         )
 
-        return response
+        # TODO: Handle Exceptions
+        result = response['api_response']
+
+        if result['status_code'] in [200, 201]:
+            return result['json']
 
 
     async def list_models(self, type:model.ModelType) -> List[model.Model]:
@@ -110,6 +119,7 @@ class AsyncHordeClient:
                 'type': type.value
             }
         )
+        
         model_list = []
         for model_obj in results:
             model_list.append(

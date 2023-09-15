@@ -9,8 +9,8 @@ client = AsyncHordeClient()
 async def main():
     # List available models
     print("===== Model List =====")
-    for model in await client.list_models(type=ModelType.text)[:5]:
+    models = await client.list_models(type=ModelType.text)
+    for model in models[:5]:
         print(model)
 
-loop = asyncio.new_event_loop()
-loop.run_until_complete(main())
+asyncio.get_event_loop().run_until_complete(main())
