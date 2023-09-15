@@ -35,6 +35,7 @@ class AsyncHordeClient:
         }
     
     def __gen_query_params_string(self, query_params: dict):
+        if not query_params: return ""
         return "?" + "&".join([ k + "=" + v for k, v in  query_params.items()])
 
     async def get(self, endpoint, path_params:dict = None, query_params:dict = None):
@@ -70,7 +71,7 @@ class AsyncHordeClient:
 
         result = response['api_response']
 
-        if result['status_code'] in [200, 201]:
+        if 200 <= result['status_code'] < 300 :
             return result['json']
 
     async def post(self, endpoint, path_params:dict = None, query_params:dict = None, json_payload:dict = {}):
@@ -106,7 +107,7 @@ class AsyncHordeClient:
         # TODO: Handle Exceptions
         result = response['api_response']
 
-        if result['status_code'] in [200, 201]:
+        if 200 <= result['status_code'] < 300 :
             return result['json']
 
 
@@ -137,10 +138,10 @@ class AsyncHordeClient:
         '''
         self.__models.append(model)
     
-    def check_job_status(self, job:model.Job) -> model.JobResponse:
+    async def check_job_status(self, job:model.Job) -> model.JobResponse:
         '''
         '''
-        status = self.get(
+        status = await self.get(
             config.ENDPOINT_LIST['V2__ASYNC_TEXT_STATUS'],
             path_params={
                 'id': job.id
@@ -148,7 +149,7 @@ class AsyncHordeClient:
         )
         return model.JobResponse(**status)
 
-    def text_gen(self, prompt:str, params:model.TextGenParams = model.TextGenParams()):
+    async def text_gen(self, prompt:str, params:model.TextGenParams = model.TextGenParams()):
         '''
         '''
         request_data = model.TextGenRequest(
@@ -157,7 +158,7 @@ class AsyncHordeClient:
             prompt = prompt
         )
 
-        job_result = self.post(
+        job_result = await self.post(
             config.ENDPOINT_LIST['V2__ASYNC_TEXT_SUBMIT'],
             json_payload = request_data.model_dump()
         )
@@ -167,7 +168,7 @@ class AsyncHordeClient:
         )
 
         while True:
-            job_status = self.check_job_status(job)
+            job_status = await self.check_job_status(job)
             if job_status.done or not job_status.is_possible:
                 return job_status
             time.sleep(config.REQUEST_RETRY_TIMEOUT)
