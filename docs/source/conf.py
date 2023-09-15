@@ -5,15 +5,22 @@
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
+from datetime import datetime
 
 project = 'horde-client'
-copyright = '2023, Rahul D Shetty'
+copyright = f'{datetime.now().year}, Rahul D Shetty'
 author = 'Rahul D Shetty'
+
+source_suffix = ".md"
+master_doc = "index"
+
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["myst_parser"]
+extensions = [
+    "myst_parser"
+]
 
 myst_enable_extensions = [
     "amsmath",
@@ -33,8 +40,7 @@ myst_enable_extensions = [
 ]
 
 templates_path = ['_templates']
-exclude_patterns = []
-
+exclude_patterns = ["_build"]
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -42,3 +48,22 @@ exclude_patterns = []
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
+
+# Theme based options
+# https://alabaster.readthedocs.io/en/latest/customization.html
+html_theme_options = {
+    "description": "Easy-to-use Python Interface for KoboldAI Horde",
+    'github_button': True,
+    'github_user': 'rahuldshetty',
+    'github_repo': 'horde-client',
+
+
+    "fixed_sidebar": True,
+    'sidebar_width': '220px',
+
+    'base_text': '#3E4349',
+    'body_text': '#3E4349',
+    'font_family': 'Georgia, serif',
+    'font_size': '17px',
+    'head_font_family': 'Georgia, serif',
+}

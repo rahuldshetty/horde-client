@@ -40,9 +40,10 @@
 
 This project provides Python Client to interact with [KoboldAI Horde](https://horde.koboldai.net) service, which is a crowdsourced distributed cluster program that offers Image generation and Text Generation workers. Through this utility package, you can leverage these services from your application. 
 
-* Simple & Easy-to-use.
-* Support for Text Generation & Image Generation (WIP).
-* More Examples! (on the way)
+* Simple & Easy-to-use
+* Support for Text Generation & Image Generation (WIP)
+* Asynchronous Client
+* LangChain Integration (WIP)
 
 > Note: There is an official Python SDK under development from Haidra-org: https://github.com/Haidra-Org/horde-sdk.
 
@@ -61,7 +62,10 @@ Sample Code:
 from horde_client import HordeClient, TextGenParams
 
 # Initialize Client
-client = HordeClient()
+client = HordeClient(
+  # To access public KoboldAI service
+  insecure=True 
+)
 
 # Prompt
 prompt =  """### Instruction: 
@@ -93,8 +97,8 @@ print(text_gen_ouput.generations[0].text)
 - [X] Text Generation Support
 - [ ] LangChain/LlaMaIndex Integration
 - [ ] Image Generation Support
-- [ ] Asynchronous Client
-- [ ] Readthedocs integration
+- [X] Asynchronous Client
+- [X] Readthedocs integration
 - [ ] Tests
 
 Missing Something? Raise a [request](https://github.com/rahuldshetty/horde-client/issues) 

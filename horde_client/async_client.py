@@ -2,7 +2,7 @@ import random, time, json
 from urllib.parse import  urljoin
 from typing import List
 
-import aiohttp
+import asyncio
 from asyncio_requests.asyncio_request import request
 
 from horde_client import config
@@ -185,4 +185,4 @@ class AsyncHordeClient:
             job_status = await self.check_job_status(job)
             if job_status.done or not job_status.is_possible:
                 return job_status
-            time.sleep(config.REQUEST_RETRY_TIMEOUT)
+            await asyncio.sleep(config.REQUEST_RETRY_TIMEOUT)
