@@ -2,7 +2,9 @@ import asyncio
 
 from horde_client import AsyncHordeClient, ModelType, TextGenParams
 
-client = AsyncHordeClient()
+client = AsyncHordeClient(
+    insecure=True
+)
 
 prompt =  """### Instruction: 
 Tell me a knock knock joke.

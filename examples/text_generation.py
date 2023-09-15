@@ -1,6 +1,8 @@
 from horde_client import HordeClient, ModelType, TextGenParams
 
-client = HordeClient()
+client = HordeClient(
+    insecure=True # To access public KoboldAI service
+)
 
 # List available models
 print("===== Model List =====")

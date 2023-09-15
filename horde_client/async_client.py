@@ -7,25 +7,39 @@ from asyncio_requests.asyncio_request import request
 
 from horde_client import config
 from horde_client import model
-
+from horde_client import errors
 
 class AsyncHordeClient:
     def __init__(self, 
-            base_url=config.API_BASE_URL,
-            api_token=config.ANON_KEY
+            base_url:str = config.API_BASE_URL,
+            api_token:str = config.ANON_KEY,
+            insecure:bool = False
         ):
         '''
-        Instantiate HordeClient SDK.
+        Instantiate Async HordeClient SDK.
 
         Parameters:
         -----------
-        base_url (str): Kobold Horde API URL (Default: https://horde.koboldai.net/api/)
-        api_token (str): Kobold Horde API Key (Default: 0000000000)
+        base_url (str):  KoboldAI API URL (Default: https://horde.koboldai.net/api/)
+        api_token (str): KoboldAI API Key (Default: 0000000000)
+        insecure (bool): Enabling insecure mode allows access to public KoboldAI. 
+                         You will need to provide base_url when this flag is off (Default False)
         '''
-        self.__base_url = base_url
-        self.__api_token = api_token
+        self.__base_url = base_url.strip()
+        self.__api_token = api_token.strip()
+        self.__insecure = insecure
         self.__models = []
+
+        self.validate_insecure_permission()
     
+    def validate_insecure_permission(self):
+        '''
+        To avoid accidental data leaks to public KoboldAI services, users have to manually enabled insecure mode.
+        This methods is called during class initialization to validate the checks.
+        '''
+        if self.__insecure == False and self.__base_url == config.API_BASE_URL:
+            raise errors.InsecureModePermissionError()
+
     def __headers(self):
         '''
         '''
