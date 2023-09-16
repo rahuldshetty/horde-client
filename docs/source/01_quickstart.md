@@ -1,6 +1,6 @@
 # Quickstart
 
-Install Horde Client with pip: 
+Install Horde Client from [PyPI](https://pypi.org/project/horde-client/): 
 
 `pip install horde-client`
 
