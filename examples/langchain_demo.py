@@ -19,7 +19,11 @@ llm = HordeClientLLM(
 )
 
 # Prompt Template
-template = "### Instruction:\nCreate a fancy company name for a company that makes {product}.\n### Response:\n"
+template = """### Instruction:
+Create a fancy company name for a company that makes {product}.
+### Response:
+"""
+
 prompt= PromptTemplate(input_variables=["product"], template=template)
 
 # Chain Prompt with LLM
