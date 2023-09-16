@@ -1,6 +1,6 @@
 API_BASE_URL = "https://horde.koboldai.net/api/"
 ANON_KEY = '0000000000'
-REQUEST_RETRY_TIMEOUT = 12
+REQUEST_RETRY_TIMEOUT = 3
 
 ENDPOINT_LIST = {
     "V2__MODEL_LIST": "v2/status/models",

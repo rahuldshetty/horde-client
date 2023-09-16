@@ -5,3 +5,5 @@ from horde_client.model import (
     ModelType,
     TextGenParams
 )
+
+from horde_client.langchain_llm import HordeClientLLM

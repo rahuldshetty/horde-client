@@ -18,9 +18,9 @@ Through this library package, it will provide easier access to Horde services th
 ## Features
 
 * Simple & Easy-to-use
-* Support for Text Generation & Image Generation (WIP)
+* Support for Text Generation
+* LangChain Integration 
 * Asynchronous Client
-* LangChain Integration (WIP)
 
 ```{admonition} Note
 :class: note

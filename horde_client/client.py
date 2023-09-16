@@ -135,7 +135,7 @@ class HordeClient:
         )
         return model.JobResponse(**status)
 
-    def text_gen(self, prompt:str, params:model.TextGenParams = model.TextGenParams()):
+    def text_gen(self, prompt:str, params:model.TextGenParams = model.TextGenParams()) -> model.JobResponse:
         '''
         '''
         request_data = model.TextGenRequest(
