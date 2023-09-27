@@ -3,7 +3,8 @@ from horde_client.async_client import AsyncHordeClient
 
 from horde_client.model import (
     ModelType,
-    TextGenParams
+    TextGenParams,
+    ImageGenParams
 )
 
 from horde_client.langchain_llm import HordeClientLLM

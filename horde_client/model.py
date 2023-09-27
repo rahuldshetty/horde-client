@@ -21,6 +21,10 @@ class Model(BaseModel):
             perf = self.performance
         )
 
+'''
+Text Generation
+'''
+
 class TextGenParams(BaseModel):
     frmtadsnsp: bool = False
     frmtrmblln: bool = False
@@ -40,7 +44,6 @@ class TextGenParams(BaseModel):
     top_p: float = 0.92
     typical: int = 1
 
-
 class TextGenRequest(BaseModel):
     models: List[str]
     params: TextGenParams
@@ -59,10 +62,17 @@ class JobGenerationOutputState(str, Enum):
 class JobGenerationOutput(BaseModel):
     worker_id: str
     worker_name: str
-    text: str
     state: JobGenerationOutputState
     seed: int
     model: str
+
+    # Text Generation Parameters
+    text: str | None = None
+
+    # Image Generation Parameters
+    id: str | None = None
+    img: str | None = None
+
 
 class JobResponse(BaseModel):
     done: bool
@@ -82,3 +92,44 @@ class JobResponse(BaseModel):
             responses = str(len(self.generations))
         )
 
+
+'''
+Image Generation
+'''
+
+class ImageGenSampleType(str, Enum):
+    k_lms = "k_lms"
+    k_euler_a = "k_euler_a"
+
+class ImageGenLora(BaseModel):
+    name: str
+    model: int = 1
+    clip: int = 1
+    inject_trigger: str = "string"
+
+class ImageGenParams(BaseModel):
+    width: int = 512
+    height: int = 512
+    
+    n: int = 1
+    steps: int = 20
+    
+    seed: str = ""
+    sampler_name: str = ImageGenSampleType.k_euler_a
+    karras: bool = False
+    cfg_scale: float = 7.0
+    post_processing: List[str | None] = []
+    loras: List[ImageGenLora | None] = []
+
+
+class ImageGenRequest(BaseModel):
+    models: List[str]
+    params: ImageGenParams
+    prompt: str
+    use_default_badwordsids: bool = True
+    workers: List[str] = []
+
+    censor_nsfw: bool = True
+    nsfw: bool = False
+    r2: bool = False
+    replacement_filter: bool = True

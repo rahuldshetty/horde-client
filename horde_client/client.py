@@ -124,11 +124,19 @@ class HordeClient:
         '''
         self.__models.append(model)
     
-    def check_job_status(self, job:model.Job) -> model.JobResponse:
+    def check_job_status(self, job:model.Job, type:model.ModelType) -> model.JobResponse:
         '''
+        Get latest status of Horde Async Job
         '''
+        url = None
+
+        if type == model.ModelType.text:
+            url = config.ENDPOINT_LIST['V2__ASYNC_TEXT_STATUS']
+        elif type == model.ModelType.image:
+            url = config.ENDPOINT_LIST['V2__ASYNC_IMAGE_STATUS']
+
         status = self.get(
-            config.ENDPOINT_LIST['V2__ASYNC_TEXT_STATUS'],
+            url,
             path_params={
                 'id': job.id
             }
@@ -137,6 +145,7 @@ class HordeClient:
 
     def text_gen(self, prompt:str, params:model.TextGenParams = model.TextGenParams()) -> model.JobResponse:
         '''
+        Leverage Horde LLM service to complete initial prompt using text generation.
         '''
         request_data = model.TextGenRequest(
             models = self.__models,
@@ -154,10 +163,34 @@ class HordeClient:
         )
 
         while True:
-            job_status = self.check_job_status(job)
+            job_status = self.check_job_status(job, model.ModelType.text)
             if job_status.done or not job_status.is_possible:
                 return job_status
             time.sleep(config.REQUEST_RETRY_TIMEOUT)
         
+    def image_gen(self, prompt: str, params:model.ImageGenParams = model.ImageGenParams()) -> model.JobResponse:
+        '''
+        Leverage Horde LLM service to generate image using an initial prompt.
+        '''
+        request_data = model.ImageGenRequest(
+            models = self.__models,
+            params = params,
+            prompt = prompt
+        )
+
+        job_result = self.post(
+            config.ENDPOINT_LIST['V2__ASYNC_IMAGE_SUBMIT'],
+            json_payload = request_data.model_dump()
+        )
+
+        job = model.Job(
+            **job_result
+        )
+
+        while True:
+            job_status = self.check_job_status(job, model.ModelType.image)
+            if job_status.done or not job_status.is_possible:
+                return job_status
+            time.sleep(config.REQUEST_RETRY_TIMEOUT)
 
         

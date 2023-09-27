@@ -5,7 +5,10 @@ REQUEST_RETRY_TIMEOUT = 3
 ENDPOINT_LIST = {
     "V2__MODEL_LIST": "v2/status/models",
     "V2__ASYNC_TEXT_SUBMIT": "v2/generate/text/async",
-    "V2__ASYNC_TEXT_STATUS": "v2/generate/text/status/{id}"
+    "V2__ASYNC_TEXT_STATUS": "v2/generate/text/status/{id}",
+
+    "V2__ASYNC_IMAGE_SUBMIT": "v2/generate/async",
+    "V2__ASYNC_IMAGE_STATUS": "v2/generate/status/{id}",
 }
 
 user_agents = [
