@@ -37,4 +37,4 @@ img.save(file_output)
 print('Output saved to ' + file_output)
 ```
 
-![my-cat.png](_static/my-cat.png)
+![my-cat.png](_static/my-cat.jpeg)
