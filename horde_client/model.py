@@ -2,6 +2,10 @@ from enum import Enum
 from pydantic import BaseModel
 from typing import List
 
+class SortBy(str, Enum):
+    name = 'name'
+    perf = 'perf'
+
 class ModelType(str, Enum):
     text = 'text'
     image = 'image'
@@ -77,7 +81,7 @@ class JobGenerationOutput(BaseModel):
 class JobResponse(BaseModel):
     done: bool
     faulted: bool
-    generations: List[JobGenerationOutput]
+    generations: List[JobGenerationOutput | None] = []
     is_possible: bool
     kudos: int
     processing: int
@@ -87,9 +91,10 @@ class JobResponse(BaseModel):
     waiting: int
 
     def __str__(self) -> str:
-        return "Output(done={done},responses=[{responses}])".format(
+        return "Output(done={done},responses=[{responses}], queue_position={queue_position})".format(
             done = str(self.done),
-            responses = str(len(self.generations))
+            responses = str(len(self.generations)),
+            queue_position = str(self.queue_position)
         )
 
 

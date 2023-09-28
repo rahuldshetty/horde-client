@@ -18,10 +18,10 @@ for model in client.list_models(type=ModelType.text)[:20]:
 
 # Set model
 client.clear_model()
-client.set_model('Project Unreal Engine 5')
+client.set_model('stable_diffusion')
 
 # Image Generation Prompt
-prompt =  """an orange cat reading newspaper in bench and sitting in park"""
+prompt =  """an orange cat, wearing black suit, reading newspaper, in bench, park, outdoors"""
 
 print("\n===== Prompt =====")
 print(prompt)
@@ -37,3 +37,4 @@ img.save(file_output)
 print('Output saved to ' + file_output)
 ```
 
+![my-cat.png](_static/my-cat.png)
