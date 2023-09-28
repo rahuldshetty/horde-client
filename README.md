@@ -41,7 +41,7 @@
 This project provides Python Client to interact with [KoboldAI Horde](https://horde.koboldai.net) service, which is a crowdsourced distributed cluster program that offers Image generation and Text Generation workers. Through this utility package, you can leverage these services from your application. 
 
 * Simple & Easy-to-use
-* Support for Text Generation
+* Support for Text & Image Generation
 * LangChain Integration 
 * Asynchronous Client
 
@@ -96,7 +96,7 @@ print(text_gen_ouput.generations[0].text)
 
 - [X] Text Generation Support
 - [ ] LangChain/LlaMaIndex Integration
-- [ ] Image Generation Support
+- [X] Image Generation Support
 - [X] Asynchronous Client
 - [X] Readthedocs integration
 - [ ] Tests

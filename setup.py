@@ -9,7 +9,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='horde-client',
-    version='1.0.2',
+    version='1.0.3',
     description='Python Interface for AIHorde',
     author='Rahul D Shettu',
     author_email='35rahuldshetty@gmail.com',

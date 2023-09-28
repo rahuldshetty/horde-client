@@ -1,11 +1,21 @@
 # Changelog
 
+## [1.0.3] - 2023-09-28
+
+### Added
+
+- Support for Image Generation.
+
+### Changed
+
+- Added `sort_by` option for *list_models()* method.
+ 
 ## [1.0.2] - 2023-09-16
 
 ### Added
 
 - LangChain LLM Support for Kobold Horde Client.
-- readthedocs Integration.
+- [readthedocs](horde-client.readthedocs.io) Integration.
 - Introduced Changelog to capture version changes.
 - Async Kobold Horde Client for text generation.
 - Custom Error Handling.
